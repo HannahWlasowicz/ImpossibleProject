@@ -11,7 +11,6 @@ import { Dataset, FiltersState } from "../types";
 import ZoomButtons from "./ZoomButtons";
 import drawLabel from "../canvas-utils";
 import GraphTitle from "./GraphTitle";
-import TableApp from "./Table";
 
 import "react-sigma-v2/lib/react-sigma-v2.css";
 import { GrClose } from "react-icons/gr";

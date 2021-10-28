@@ -17,10 +17,10 @@ const GraphEventsController: FC<{ setHoveredNode: (node: string | null) => void 
   useEffect(() => {
     registerEvents({
       clickNode({ node }) {
-        console.log(node);
-        // if (!graph.getNodeAttribute(node, "hidden")) {
+        if (!graph.getNodeAttribute(node, "hidden")) {
+          console.log(node);
         //   window.open(graph.getNodeAttribute(node, "URL"), "_blank");
-        // }
+         }
       },
       enterNode({ node }) {
         setHoveredNode(node);
