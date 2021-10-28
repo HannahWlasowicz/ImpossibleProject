@@ -3,9 +3,9 @@ import { SigmaContainer } from "react-sigma-v2";
 import getNodeProgramImage from "sigma/rendering/webgl/programs/node.image";
 import { omit, mapValues, keyBy, constant } from "lodash";
 
-import GraphSettingsController from "./GraphSettingsController";
-import GraphEventsController from "./GraphEventsController";
-import GraphDataController from "./GraphDataController";
+import GraphSettingsController from "../handlers/GraphSettingsController";
+import GraphEventsController from "../handlers/GraphEventsController";
+import GraphDataController from "../handlers/GraphDataController";
 import FullScreenButton from "./FullScreenButton";
 import { Dataset, FiltersState } from "../types";
 import ZoomButtons from "./ZoomButtons";
@@ -87,12 +87,11 @@ const Root: FC = () => {
               >
                 <GrClose />
               </button>
-              <GraphTitle filters={filtersState} />
+              {/* <GraphTitle filters={filtersState} /> */}
             </div>
           </>
         )}
       </SigmaContainer>
-     
     </div>
     
   );

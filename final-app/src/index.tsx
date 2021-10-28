@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
-import Root from "./views/Root";
-import TableApp from "./views/Table";
+import Root from "./components/Root";
+import TableApp from "./components/Table";
 
 ReactDOM.render(
   <React.StrictMode>
