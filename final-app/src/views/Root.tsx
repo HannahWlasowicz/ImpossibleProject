@@ -32,6 +32,7 @@ const Root: FC = () => {
       .then((res) => res.json())
       .then((dataset: Dataset) => {
         setDataset(dataset);
+        console.log(dataset);
         setFiltersState({
           clusters: mapValues(keyBy(dataset.clusters, "key"), constant(true)),
           tags: mapValues(keyBy(dataset.tags, "key"), constant(true)),
