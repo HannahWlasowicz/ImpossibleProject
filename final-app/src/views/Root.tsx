@@ -7,14 +7,11 @@ import GraphSettingsController from "./GraphSettingsController";
 import GraphEventsController from "./GraphEventsController";
 import GraphDataController from "./GraphDataController";
 import FullScreenButton from "./FullScreenButton";
-import DescriptionPanel from "./DescriptionPanel";
 import { Dataset, FiltersState } from "../types";
-import ClustersPanel from "./ClustersPanel";
-import SearchField from "./SearchField";
 import ZoomButtons from "./ZoomButtons";
 import drawLabel from "../canvas-utils";
 import GraphTitle from "./GraphTitle";
-import TagsPanel from "./TagsPanel";
+import TableApp from "./Table";
 
 import "react-sigma-v2/lib/react-sigma-v2.css";
 import { GrClose } from "react-icons/gr";
@@ -91,49 +88,13 @@ const Root: FC = () => {
                 <GrClose />
               </button>
               <GraphTitle filters={filtersState} />
-              <div className="panels">
-                <SearchField filters={filtersState} />
-                <DescriptionPanel />
-                <ClustersPanel
-                  clusters={dataset.clusters}
-                  filters={filtersState}
-                  setClusters={(clusters) =>
-                    setFiltersState((filters) => ({
-                      ...filters,
-                      clusters,
-                    }))
-                  }
-                  toggleCluster={(cluster) => {
-                    setFiltersState((filters) => ({
-                      ...filters,
-                      clusters: filters.clusters[cluster]
-                        ? omit(filters.clusters, cluster)
-                        : { ...filters.clusters, [cluster]: true },
-                    }));
-                  }}
-                />
-                <TagsPanel
-                  tags={dataset.tags}
-                  filters={filtersState}
-                  setTags={(tags) =>
-                    setFiltersState((filters) => ({
-                      ...filters,
-                      tags,
-                    }))
-                  }
-                  toggleTag={(tag) => {
-                    setFiltersState((filters) => ({
-                      ...filters,
-                      tags: filters.tags[tag] ? omit(filters.tags, tag) : { ...filters.tags, [tag]: true },
-                    }));
-                  }}
-                />
-              </div>
             </div>
           </>
         )}
       </SigmaContainer>
+     
     </div>
+    
   );
 };
 
