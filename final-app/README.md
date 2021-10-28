@@ -1,3 +1,8 @@
+# Json file explained
+Node values contain a key and label. Key will act like an id (should be unique)
+Edge values is [source, target, weight]
+
+
 # Sigma.js full-featured demo
 
 This project aims to provide a full-features "real life" application using sigma.js. It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses [react-sigma-v2](https://github.com/sim51/react-sigma-v2) to interface sigma.js with React.
