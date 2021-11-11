@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import { SigmaContainer } from "react-sigma-v2";
+import { ForceAtlasControl, SigmaContainer } from "react-sigma-v2";
 import getNodeProgramImage from "sigma/rendering/webgl/programs/node.image";
-import { omit, mapValues, keyBy, constant } from "lodash";
+import { omit, mapValues, keyBy, constant, filter } from "lodash";
+
 
 import GraphSettingsController from "../handlers/GraphSettingsController";
 import GraphEventsController from "../handlers/GraphEventsController";
@@ -22,21 +23,21 @@ const Root: FC = () => {
   const [dataset, setDataset] = useState<Dataset | null>(null);
   const [filtersState, setFiltersState] = useState<FiltersState>({
     clusters: {},
-    tags: {},
+    tags: {}
   });
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
   // Load data on mount:
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/dataset.json`)
+    fetch(`${process.env.PUBLIC_URL}/data.json`)
       .then((res) => res.json())
       .then((dataset: Dataset) => {
         setDataset(dataset);
         console.log(dataset);
-        setFiltersState({
-          clusters: mapValues(keyBy(dataset.clusters, "key"), constant(true)),
-          tags: mapValues(keyBy(dataset.tags, "key"), constant(true)),
-        });
+        // setFiltersState({
+        //   clusters: mapValues(keyBy(dataset.clusters, "key"), constant(true)),
+        //   tags: mapValues(keyBy(dataset.tags, "key"), constant(true)),
+        // });
         requestAnimationFrame(() => setDataReady(true));
       });
   }, []);
@@ -62,8 +63,7 @@ const Root: FC = () => {
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
         <GraphEventsController setHoveredNode={setHoveredNode} />
-        <GraphDataController dataset={dataset} filters={filtersState} />
-
+        <GraphDataController dataset={dataset}   />
         {dataReady && (
           <>
             <div className="controls">
@@ -77,6 +77,7 @@ const Root: FC = () => {
               </button>
               <FullScreenButton />
               <ZoomButtons />
+              <ForceAtlasControl autoRunFor={ 2000} />
             </div>
             <div className="contents">
               <button
