@@ -34,10 +34,10 @@ const Root: FC = () => {
       .then((dataset: Dataset) => {
         setDataset(dataset);
         console.log(dataset);
-        // setFiltersState({
-        //   clusters: mapValues(keyBy(dataset.clusters, "key"), constant(true)),
-        //   tags: mapValues(keyBy(dataset.tags, "key"), constant(true)),
-        // });
+        setFiltersState({
+          clusters: mapValues(keyBy(dataset.clusters, "key"), constant(true)),
+          tags: mapValues(keyBy(dataset.tags, "key"), constant(true)),
+        });
         requestAnimationFrame(() => setDataReady(true));
       });
   }, []);
@@ -63,7 +63,7 @@ const Root: FC = () => {
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
         <GraphEventsController setHoveredNode={setHoveredNode} />
-        <GraphDataController dataset={dataset}   />
+        <GraphDataController dataset={dataset} filters={filtersState} />
         {dataReady && (
           <>
             <div className="controls">
