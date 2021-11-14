@@ -64,7 +64,7 @@ const Root: FC = () => {
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
         <GraphEventsController setHoveredNode={setHoveredNode} />
-        {/* <NewGraphDataController dataset={dataset} /> */}
+        {/* <NewGraphDataController dataset={dataset} filters={filtersState}/> */}
         <GraphDataController dataset={dataset} filters={filtersState} />
         {dataReady && (
           <>
