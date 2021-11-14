@@ -16,6 +16,7 @@ import GraphTitle from "./GraphTitle";
 import "react-sigma-v2/lib/react-sigma-v2.css";
 import { GrClose } from "react-icons/gr";
 import { BiBookContent } from "react-icons/bi";
+import NewGraphDataController from "../handlers/NewGraphDataController";
 
 const Root: FC = () => {
   const [showContents, setShowContents] = useState(false);
@@ -63,6 +64,7 @@ const Root: FC = () => {
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
         <GraphEventsController setHoveredNode={setHoveredNode} />
+        {/* <NewGraphDataController dataset={dataset} /> */}
         <GraphDataController dataset={dataset} filters={filtersState} />
         {dataReady && (
           <>

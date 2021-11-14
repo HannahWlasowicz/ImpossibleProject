@@ -29,8 +29,9 @@ const NewGraphDataController: FC<{ dataset: Dataset;  }> = ({ dataset,  children
     
     randomLayout.assign(graph);
     dataset.nodes.forEach(node => {
+      console.log(node.label);
       graph.mergeNodeAttributes(node.key, {
-        ...node,
+        label: node.label,
       });
     });
     loadGraph(graph);
