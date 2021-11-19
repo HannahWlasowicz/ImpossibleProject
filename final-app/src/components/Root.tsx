@@ -77,19 +77,18 @@ const Root: FC = () => {
               >
                 <BiBookContent />
               </button>
-              <FullScreenButton />
               <ZoomButtons />
-              <ForceAtlasControl autoRunFor={ 2000} />
+              {/* <ForceAtlasControl autoRunFor={ 2000} /> */}
             </div>
             <div className="contents">
-              <button
+              {/* <button
                 type="button"
                 className="ico hide-contents"
                 onClick={() => setShowContents(false)}
                 title="Show caption and description"
               >
                 <GrClose />
-              </button>
+              </button> */}
               {/* <GraphTitle filters={filtersState} /> */}
             </div>
           </>
