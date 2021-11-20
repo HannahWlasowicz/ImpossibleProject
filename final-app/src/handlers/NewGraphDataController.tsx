@@ -5,6 +5,8 @@ import { DirectedGraph, UndirectedGraph } from "graphology";
 import { Attributes, NodeKey } from "graphology-types";
 import randomLayout from "graphology-layout/random";
 import erdosRenyi from "graphology-generators/random/erdos-renyi";
+import { drawHover } from "../canvas-utils";
+import useDebounce from "../use-debounce";
 
 import {
     useSigma,
@@ -15,11 +17,21 @@ import {
 
   import { Dataset, FiltersState } from "../types";
 
-  const NewGraphDataController: FC<{ dataset: Dataset; filters: FiltersState }> = ({ dataset, filters,  children }) => {
+  function getMouseLayer() {
+    return document.querySelector(".sigma-mouse");
+  }
+  const NODE_FADE_COLOR = "#bbb";
+const EDGE_FADE_COLOR = "#eee";
+
+  const NewGraphDataController: FC<{ dataset: Dataset; filters: FiltersState; setHoveredNode: (node: string | null) => void;  hoveredNode: string | null  }> = ({ dataset, filters, setHoveredNode, hoveredNode, children }) => {
     const sigma = useSigma();
     // const graph = sigma.getGraph();
     const loadGraph = useLoadGraph();
     const graph = erdosRenyi(DirectedGraph, { order: dataset.nodes.length, probability: 0.1, rng });
+    const registerEvents = useRegisterEvents();
+    const debouncedHoveredNode = useDebounce(hoveredNode, 40);
+	var isDragging = false;
+	var draggedNode: string | null = null;
   
     /**
      * Feed graphology with the new dataset:
@@ -59,6 +71,7 @@ import {
             MIN_NODE_SIZE,
         ),
       );
+      // console.log(graph.getNodeAttributes);
       loadGraph(graph);
       
       return () => graph.clear();
@@ -102,6 +115,98 @@ import {
       graph.setNodeAttribute(node, "hidden", !clusters[cluster]),
     );
   }, [graph, filters]);
+
+  useEffect(() => {
+		registerEvents({
+			clickNode({ node }) {
+				if (!graph.getNodeAttribute(node, "hidden")) {
+					console.log(node);
+					//   window.open(graph.getNodeAttribute(node, "URL"), "_blank");
+				}
+			},
+			enterNode({ node }) {
+				setHoveredNode(node.toString());
+				// TODO: Find a better way to get the DOM mouse layer:
+				const mouseLayer = getMouseLayer();
+				if (mouseLayer) mouseLayer.classList.add("mouse-pointer");
+			},
+		// 	leaveNode() {
+		// 		setHoveredNode(null);
+		// 		// TODO: Find a better way to get the DOM mouse layer:
+		// 		const mouseLayer = getMouseLayer();
+		// 		if (mouseLayer) mouseLayer.classList.remove("mouse-pointer");
+		// 	},
+			downNode({ node }) {
+				isDragging = true;
+				draggedNode = node.toString();
+				graph.setNodeAttribute(draggedNode, "highlighted", true);
+				sigma.getCamera().disable();
+			}
+		});
+		sigma.getMouseCaptor().on("mousemove", (e) => {
+			if (!isDragging || !draggedNode) return;
+
+			// Get new position of node
+			const pos = sigma.viewportToGraph(e);
+
+			graph.setNodeAttribute(draggedNode, "x", pos.x);
+			graph.setNodeAttribute(draggedNode, "y", pos.y);
+		});
+		sigma.getMouseCaptor().on("mouseup", () => {
+			if (draggedNode) {
+				graph.removeNodeAttribute(draggedNode, "highlighted");
+			}
+			isDragging = false;
+			draggedNode = null;
+			sigma.getCamera().enable();
+		});
+
+		// Disable the autoscale at the first down interaction
+		sigma.getMouseCaptor().on("mousedown", () => {
+			if (!sigma.getCustomBBox()) sigma.setCustomBBox(sigma.getBBox());
+		});
+	}, []);
+
+  
+
+  /**
+   * Initialize here settings that require to know the graph and/or the sigma
+   * instance:
+   */
+  useEffect(() => {
+    sigma.setSetting("hoverRenderer", (context, data, settings) =>
+      drawHover(context, { ...sigma.getNodeDisplayData(data.key), ...data }, settings),
+    );
+  }, [sigma, graph]);
+
+  /**
+   * Update node and edge reducers when a node is hovered, to highlight its
+   * neighborhood:
+   */
+  useEffect(() => {
+    const hoveredColor: string = debouncedHoveredNode ? sigma.getNodeDisplayData(debouncedHoveredNode)!.color : "";
+
+    sigma.setSetting(
+      "nodeReducer",
+      debouncedHoveredNode
+        ? (node, data) =>
+            node === debouncedHoveredNode ||
+            graph.hasEdge(node, debouncedHoveredNode) ||
+            graph.hasEdge(debouncedHoveredNode, node)
+              ? { ...data, zIndex: 1 }
+              : { ...data, zIndex: 0, label: "", color: NODE_FADE_COLOR, image: null, highlighted: false }
+        : null,
+    );
+    sigma.setSetting(
+      "edgeReducer",
+      debouncedHoveredNode
+        ? (edge, data) =>
+            graph.hasExtremity(edge, debouncedHoveredNode)
+              ? { ...data, color: hoveredColor, size: 4 }
+              : { ...data, color: EDGE_FADE_COLOR, hidden: true }
+        : null,
+    );
+  }, [debouncedHoveredNode]);
 
   return <>{children}</>;
 };

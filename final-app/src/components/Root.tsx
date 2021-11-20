@@ -64,7 +64,7 @@ const Root: FC = () => {
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
         <GraphEventsController setHoveredNode={setHoveredNode} />
-        {/* <NewGraphDataController dataset={dataset} filters={filtersState}/> */}
+        {/* <NewGraphDataController dataset={dataset} filters={filtersState} setHoveredNode={setHoveredNode} hoveredNode={hoveredNode}/> */}
         <GraphDataController dataset={dataset} filters={filtersState} />
         {dataReady && (
           <>
@@ -78,7 +78,6 @@ const Root: FC = () => {
                 <BiBookContent />
               </button>
               <ZoomButtons />
-              {/* <ForceAtlasControl autoRunFor={ 2000} /> */}
             </div>
             <div className="contents">
               {/* <button
