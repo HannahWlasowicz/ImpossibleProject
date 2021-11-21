@@ -63,9 +63,10 @@ const Root: FC = () => {
         className="react-sigma"
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
-        <GraphEventsController setHoveredNode={setHoveredNode} />
-        {/* <NewGraphDataController dataset={dataset} filters={filtersState} setHoveredNode={setHoveredNode} hoveredNode={hoveredNode}/> */}
+        <GraphEventsController setHoveredNode={setHoveredNode} />        
         <GraphDataController dataset={dataset} filters={filtersState} />
+        {/* <NewGraphDataController dataset={dataset} filters={filtersState} setHoveredNode={setHoveredNode} hoveredNode={hoveredNode}/> */}
+        
         {dataReady && (
           <>
             <div className="controls">
