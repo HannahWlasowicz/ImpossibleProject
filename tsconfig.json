@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "other_comps/Arc.tsx"  ]
 }
