@@ -4,6 +4,9 @@ import { keyBy, omit } from "lodash";
 
 import { Dataset, FiltersState } from "../types";
 
+const MIN_NODE_SIZE = 1;
+const MAX_NODE_SIZE = 10;
+
 const GraphDataController: FC<{ dataset: Dataset; filters: FiltersState }> = ({ dataset, filters,  children }) => {
   const sigma = useSigma();
   const graph = sigma.getGraph();
@@ -23,17 +26,15 @@ const GraphDataController: FC<{ dataset: Dataset; filters: FiltersState }> = ({ 
         x: Math.random()*(100-1)+1,
         y: Math.random()*(100-1)+1,
         ...omit(clusters[node.cluster], "key"),
-        // image: `${process.env.PUBLIC_URL}/images/${tags[node.tag].image}`,
       }),
     );
-    dataset.edges.forEach(([source, target]) => graph.addEdge(source, target, { size: 1 }));
+    dataset.edges.forEach(([source, target]) => graph.addEdge(source, target, { size: .1 }));
 
     // Use degrees as node sizes:
     const scores = graph.nodes().map((node) => graph.getNodeAttribute(node, "score"));
     const minDegree = Math.min(...scores);
     const maxDegree = Math.max(...scores);
-    const MIN_NODE_SIZE = 3;
-    const MAX_NODE_SIZE = 30;
+
     graph.forEachNode((node) =>
       graph.setNodeAttribute(
         node,
@@ -46,16 +47,6 @@ const GraphDataController: FC<{ dataset: Dataset; filters: FiltersState }> = ({ 
 
     return () => graph.clear();
   }, [graph, dataset]);
-
-  /**
-   * Apply filters to graphology:
-  //  */
-  useEffect(() => {
-    const { clusters, tags } = filters;
-    graph.forEachNode((node, { cluster, tag }) =>
-      graph.setNodeAttribute(node, "hidden", !clusters[cluster]),
-    );
-  }, [graph, filters]);
 
   return <>{children}</>;
 };

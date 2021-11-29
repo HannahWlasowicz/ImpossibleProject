@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { ForceAtlasControl, SigmaContainer } from "react-sigma-v2";
+import { ForceAtlasControl, SigmaContainer, ControlsContainer, SearchControl,ZoomControl } from "react-sigma-v2";
 import getNodeProgramImage from "sigma/rendering/webgl/programs/node.image";
 import { omit, mapValues, keyBy, constant, filter } from "lodash";
 
@@ -7,16 +7,10 @@ import { omit, mapValues, keyBy, constant, filter } from "lodash";
 import GraphSettingsController from "../handlers/GraphSettingsController";
 import GraphEventsController from "../handlers/GraphEventsController";
 import GraphDataController from "../handlers/GraphDataController";
-import FullScreenButton from "./FullScreenButton";
 import { Dataset, FiltersState } from "../types";
-import ZoomButtons from "./ZoomButtons";
 import drawLabel from "../canvas-utils";
-import GraphTitle from "./GraphTitle";
 
 import "react-sigma-v2/lib/react-sigma-v2.css";
-import { GrClose } from "react-icons/gr";
-import { BiBookContent } from "react-icons/bi";
-import NewGraphDataController from "../handlers/NewGraphDataController";
 
 const Root: FC = () => {
   const [showContents, setShowContents] = useState(false);
@@ -46,16 +40,15 @@ const Root: FC = () => {
   if (!dataset) return null;
 
   return (
-    <div id="app-root" className={showContents ? "show-contents" : ""}>
+  <div id="app-root" className={showContents ? "show-contents" : ""}>
       <SigmaContainer
-        graphOptions={{ type: "directed" }}
+        graphOptions={{ type: "undirected" }}
         initialSettings={{
           nodeProgramClasses: { image: getNodeProgramImage() },
           labelRenderer: drawLabel,
+          labelDensity: 1,
           defaultNodeType: "image",
-          defaultEdgeType: "arrow",
-          labelDensity: 0.07,
-          labelGridCellSize: 60,
+          defaultEdgeType: "line",
           labelRenderedSizeThreshold: 15,
           labelFont: "Lato, sans-serif",
           zIndex: true,
@@ -64,35 +57,15 @@ const Root: FC = () => {
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
         <GraphEventsController setHoveredNode={setHoveredNode} />        
-        <GraphDataController dataset={dataset} filters={filtersState} />
-        {/* <NewGraphDataController dataset={dataset} filters={filtersState} setHoveredNode={setHoveredNode} hoveredNode={hoveredNode}/> */}
+        <GraphDataController dataset={dataset} filters={filtersState}/>
         
-        {dataReady && (
-          <>
-            <div className="controls">
-              <button
-                type="button"
-                className="ico show-contents"
-                onClick={() => setShowContents(true)}
-                title="Show caption and description"
-              >
-                <BiBookContent />
-              </button>
-              <ZoomButtons />
-            </div>
-            <div className="contents">
-              {/* <button
-                type="button"
-                className="ico hide-contents"
-                onClick={() => setShowContents(false)}
-                title="Show caption and description"
-              >
-                <GrClose />
-              </button> */}
-              {/* <GraphTitle filters={filtersState} /> */}
-            </div>
-          </>
-        )}
+        <ControlsContainer position={"bottom-right"}>
+          <ZoomControl />
+          <ForceAtlasControl />
+        </ControlsContainer>
+        <ControlsContainer position={"top-right"}>
+          <SearchControl />
+        </ControlsContainer>
       </SigmaContainer>
     </div>
     

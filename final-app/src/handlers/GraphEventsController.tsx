@@ -1,5 +1,5 @@
-import { useRegisterEvents, useSigma } from "react-sigma-v2";
-import { FC, useEffect } from "react";
+import { useRegisterEvents, useSigma, useSetSettings } from "react-sigma-v2";
+import React, { FC, useEffect } from "react";
 
 function getMouseLayer() {
 	return document.querySelector(".sigma-mouse");
@@ -25,15 +25,9 @@ const GraphEventsController: FC<{ setHoveredNode: (node: string | null) => void 
 			},
 			enterNode({ node }) {
 				setHoveredNode(node.toString());
-				// TODO: Find a better way to get the DOM mouse layer:
-				const mouseLayer = getMouseLayer();
-				if (mouseLayer) mouseLayer.classList.add("mouse-pointer");
 			},
 			leaveNode() {
 				setHoveredNode(null);
-				// TODO: Find a better way to get the DOM mouse layer:
-				const mouseLayer = getMouseLayer();
-				if (mouseLayer) mouseLayer.classList.remove("mouse-pointer");
 			},
 			downNode({ node }) {
 				isDragging = true;
