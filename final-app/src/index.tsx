@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 import Root from "./components/Root";
-import TableApp from "./components/Table";
 import PieChart from "./Arc";
 
 ReactDOM.render(

@@ -46,7 +46,7 @@ const Root: FC = () => {
         initialSettings={{
           nodeProgramClasses: { image: getNodeProgramImage() },
           labelRenderer: drawLabel,
-          labelDensity: 1,
+          labelDensity: 0.07,
           defaultNodeType: "image",
           defaultEdgeType: "line",
           labelRenderedSizeThreshold: 15,

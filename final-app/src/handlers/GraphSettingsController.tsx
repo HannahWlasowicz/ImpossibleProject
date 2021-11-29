@@ -1,9 +1,8 @@
-import { useSigma } from "react-sigma-v2";
-import { FC, useEffect } from "react";
+import { useSigma, useSetSettings} from "react-sigma-v2";
+import React, { FC, useEffect } from "react";
 
+import { Attributes } from "graphology-types";
 import { drawHover } from "../canvas-utils";
-import useDebounce from "../use-debounce";
-
 const NODE_FADE_COLOR = "#bbb";
 const EDGE_FADE_COLOR = "#eee";
 
@@ -11,9 +10,7 @@ const GraphSettingsController: FC<{ hoveredNode: string | null }> = ({ children,
   const sigma = useSigma();
   const graph = sigma.getGraph();
 
-  // Here we debounce the value to avoid having too much highlights refresh when
-  // moving the mouse over the graph:
-  const debouncedHoveredNode = useDebounce(hoveredNode, 40);
+   const setSettings = useSetSettings();
 
   /**
    * Initialize here settings that require to know the graph and/or the sigma
@@ -29,30 +26,39 @@ const GraphSettingsController: FC<{ hoveredNode: string | null }> = ({ children,
    * Update node and edge reducers when a node is hovered, to highlight its
    * neighborhood:
    */
-  useEffect(() => {
-    const hoveredColor: string = debouncedHoveredNode ? sigma.getNodeDisplayData(debouncedHoveredNode)!.color : "";
+useEffect(() => {
+    setSettings({
+      nodeReducer: (node: string, data: { [key: string]: unknown }) => {
+        const graph = sigma.getGraph();
+        const newData: Attributes = { ...data, highlighted: data.highlighted || false };
 
-    sigma.setSetting(
-      "nodeReducer",
-      debouncedHoveredNode
-        ? (node, data) =>
-            node === debouncedHoveredNode ||
-            graph.hasEdge(node, debouncedHoveredNode) ||
-            graph.hasEdge(debouncedHoveredNode, node)
-              ? { ...data, zIndex: 1 }
-              : { ...data, zIndex: 0, label: "", color: NODE_FADE_COLOR, image: null, highlighted: false }
-        : null,
-    );
-    sigma.setSetting(
-      "edgeReducer",
-      debouncedHoveredNode
-        ? (edge, data) =>
-            graph.hasExtremity(edge, debouncedHoveredNode)
-              ? { ...data, color: hoveredColor, size: 4 }
-              : { ...data, color: EDGE_FADE_COLOR, hidden: true }
-        : null,
-    );
-  }, [debouncedHoveredNode]);
+        if (hoveredNode) {
+          if (node === hoveredNode || (graph.neighbors(hoveredNode) as Array<string>).includes(node)) {
+            newData.highlighted = true;
+            newData.color = "#000000";
+          } else {
+            
+            newData.highlighted = false;
+          }
+        } else{
+          //console.log("HEY!")
+        }
+        return newData;
+      },
+      edgeReducer: (edge: string, data: { [key: string]: unknown }) => {
+        const graph = sigma.getGraph();
+        const newData = { ...data, hidden: false};
+        if (hoveredNode && !graph.extremities(edge).includes(hoveredNode)) {
+          newData.hidden = true;
+        } else{
+          //console.log("HEY EDGE!")
+        }
+        return newData;
+
+      },
+    });
+  }, [hoveredNode]);
+
 
   return <>{children}</>;
 };
