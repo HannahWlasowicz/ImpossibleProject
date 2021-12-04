@@ -1,0 +1,39 @@
+.omidyar {
+    width: 25%;
+    height: 20%;
+    padding-left: 1%;
+}
+
+.mozilla {
+    width: 20%;
+    height: 20%;
+    padding-top: 2%;
+}
+
+.schmidt {
+    width: 20%;
+    height: 20%;
+    padding-left: 1%;
+    padding-top: 2%;
+}
+
+.cnp {
+    width: 50%;
+    height: 50%;
+    padding-top: 2%;
+    padding-left: 1%;
+}
+
+.logo-container {
+    display: flex;
+    padding-top: 4%;
+    /* border: 2px solid salmon; */
+}
+
+.funding-text {
+    text-align: center;
+    color: whitesmoke ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    text-decoration: underline overline;
+}

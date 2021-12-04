@@ -1,0 +1,332 @@
+[
+    {
+        "historical_table": [
+            {
+                "key": "history",
+                "label": "history"
+            },
+            {
+                "key": "discriminatory",
+                "label": "discriminatory"
+            },
+            {
+                "key": "unequal",
+                "label": "unequal"
+            },
+            {
+                "key": "historically",
+                "label": "historically"
+            },
+            {
+                "key": "structural racism",
+                "label": "structural racism"
+            },
+            {
+                "key": "reproduce",
+                "label": "reproduce"
+            },
+            {
+                "key": "american society",
+                "label": "american society"
+            },
+            {
+                "key": "historically unequal",
+                "label": "historically unequal"
+            },
+            {
+                "key": "unequal and discriminatory",
+                "label": "unequal and discriminatory"
+            },
+            {
+                "key": "future",
+                "label": "future"
+            },
+            {
+                "key": "american",
+                "label": "american"
+            },
+            {
+                "key": "student",
+                "label": "student"
+            },
+            {
+                "key": "generation",
+                "label": "generation"
+            },
+            {
+                "key": "teach",
+                "label": "teach"
+            },
+            {
+                "key": "educate",
+                "label": "educate"
+            },
+            {
+                "key": "past",
+                "label": "past"
+            },
+            {
+                "key": "school",
+                "label": "school"
+            },
+            {
+                "key": "teaching",
+                "label": "teaching"
+            },
+            {
+                "key": "history of racism",
+                "label": "history of racism"
+            },
+            {
+                "key": "america",
+                "label": "america"
+            }
+        ],
+        "structural_table": [
+            {
+                "key": "society",
+                "label": "society"
+            },
+            {
+                "key": "build",
+                "label": "build"
+            },
+            {
+                "key": "structural level",
+                "label": "structural level"
+            },
+            {
+                "key": "built",
+                "label": "built"
+            },
+            {
+                "key": "our society",
+                "label": "our society"
+            },
+            {
+                "key": "structural",
+                "label": "structural"
+            },
+            {
+                "key": "biases and discrimination",
+                "label": "biases and discrimination"
+            },
+            {
+                "key": "discrimination",
+                "label": "discrimination"
+            },
+            {
+                "key": "level",
+                "label": "level"
+            },
+            {
+                "key": "fund",
+                "label": "fund"
+            },
+            {
+                "key": "redlining",
+                "label": "redlining"
+            },
+            {
+                "key": "structure",
+                "label": "structure"
+            },
+            {
+                "key": "experience",
+                "label": "experience"
+            },
+            {
+                "key": "neighborhood",
+                "label": "neighborhood"
+            },
+            {
+                "key": "government",
+                "label": "government"
+            },
+            {
+                "key": "skin",
+                "label": "skin"
+            },
+            {
+                "key": "education",
+                "label": "education"
+            },
+            {
+                "key": "equal",
+                "label": "equal"
+            },
+            {
+                "key": "grow",
+                "label": "grow"
+            },
+            {
+                "key": "law",
+                "label": "law"
+            }
+        ],
+        "people_table": [
+            {
+                "key": "racially biased",
+                "label": "racially biased"
+            },
+            {
+                "key": "racially",
+                "label": "racially"
+            },
+            {
+                "key": "underlie",
+                "label": "underlie"
+            },
+            {
+                "key": "underlying",
+                "label": "underlying"
+            },
+            {
+                "key": "human",
+                "label": "human"
+            },
+            {
+                "key": "underlie decision",
+                "label": "underlie decision"
+            },
+            {
+                "key": "biased way",
+                "label": "biased way"
+            },
+            {
+                "key": "racially biased way",
+                "label": "racially biased way"
+            },
+            {
+                "key": "underlying decisions",
+                "label": "underlying decisions"
+            },
+            {
+                "key": "racially biased decision",
+                "label": "racially biased decision"
+            },
+            {
+                "key": "biased",
+                "label": "biased"
+            },
+            {
+                "key": "biased decisions",
+                "label": "biased decisions"
+            },
+            {
+                "key": "diverse",
+                "label": "diverse"
+            },
+            {
+                "key": "group of people",
+                "label": "group of people"
+            },
+            {
+                "key": "aware",
+                "label": "aware"
+            },
+            {
+                "key": "potential challenge",
+                "label": "potential challenge"
+            },
+            {
+                "key": "individual",
+                "label": "individual"
+            },
+            {
+                "key": "force",
+                "label": "force"
+            },
+            {
+                "key": "diverse group",
+                "label": "diverse group"
+            },
+            {
+                "key": "question",
+                "label": "question"
+            }
+        ],
+        "technological_table": [
+            {
+                "key": "algorithm",
+                "label": "algorithm"
+            },
+            {
+                "key": "datum",
+                "label": "datum"
+            },
+            {
+                "key": "data",
+                "label": "data"
+            },
+            {
+                "key": "variable",
+                "label": "variable"
+            },
+            {
+                "key": "proxy",
+                "label": "proxy"
+            },
+            {
+                "key": "proxy variable",
+                "label": "proxy variable"
+            },
+            {
+                "key": "technology",
+                "label": "technology"
+            },
+            {
+                "key": "developer",
+                "label": "developer"
+            },
+            {
+                "key": "bias",
+                "label": "bias"
+            },
+            {
+                "key": "ai",
+                "label": "ai"
+            },
+            {
+                "key": "data set",
+                "label": "data set"
+            },
+            {
+                "key": "technological",
+                "label": "technological"
+            },
+            {
+                "key": "algorithm developer",
+                "label": "algorithm developer"
+            },
+            {
+                "key": "racial",
+                "label": "racial"
+            },
+            {
+                "key": "choose",
+                "label": "choose"
+            },
+            {
+                "key": "racial bias",
+                "label": "racial bias"
+            },
+            {
+                "key": "developers chose",
+                "label": "developers chose"
+            },
+            {
+                "key": "input",
+                "label": "input"
+            },
+            {
+                "key": "crime",
+                "label": "crime"
+            },
+            {
+                "key": "learning",
+                "label": "learning"
+            }
+        ]
+    }
+]

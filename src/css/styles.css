@@ -1,0 +1,240 @@
+.mid-break {
+  width: 70%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.iplogo {
+  width: 450px;
+  height: 450px;
+  position: absolute;
+  left: 3%;
+  top: 8%;
+  z-index: 0;
+}
+
+.problem-solving {
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  left: 1%;
+  top: 115.5%;
+}
+
+.goal {
+  position: absolute;
+  text-decoration: underline;
+  text-transform: uppercase;
+  top: 10%;
+  right: 10%;
+}
+
+.intro {
+  height: 100px;
+  min-height: 100vh;
+  background: #ffffff;
+  background-image: url("../images/intro-background.jpg");
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+}
+
+.intro2 {
+  height: 100px;
+  min-height: 100vh;
+  background: #f7f6f1;
+  padding: 0;
+  margin: 0;
+}
+
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  width: 0px;
+  height: 0px;
+  border-right: 250px solid #ff9666;
+  border-top: 250px solid #ff9666;
+  border-left: 250px solid #537b79;
+  /* border-bottom: 60px solid red; */
+  border-top-left-radius: 250px;
+  border-top-right-radius: 250px;
+  border-bottom-left-radius: 250px;
+  border-bottom-right-radius: 200px;
+}
+
+.dot-words {
+  position: absolute;
+  top: 57.5%;
+  left: 40.5%;
+  color: white;
+}
+
+.dot2 {
+  position: absolute;
+  top: 115%;
+  right: 42%;
+  width: 0px;
+  height: 0px;
+  border-left: 100px solid transparent;
+  border-top: 100px solid #537b79;
+  border-right: 250px solid #ff9666;
+  /* border-bottom: 60px solid red; */
+  border-top-left-radius: 250px;
+  border-top-right-radius: 250px;
+  border-bottom-left-radius: 250px;
+  border-bottom-right-radius: 200px;
+}
+
+.dot-words2 {
+  position: absolute;
+  top: 118.5%;
+  right: 42.5%;
+  color: white;
+}
+
+.dot3 {
+  position: absolute;
+  top: 155%;
+  left: 8%;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-top: 100px solid #537b79;
+  border-left: 250px solid #ff9666;
+  border-top-left-radius: 250px;
+  border-top-right-radius: 250px;
+  border-bottom-left-radius: 250px;
+  border-bottom-right-radius: 200px;
+}
+
+.dot-words3 {
+  position: absolute;
+  top: 158.5%;
+  left: 9%;
+  color: white;
+}
+
+.dot4 {
+  position: absolute;
+  top: 155%;
+  left: 40%;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-top: 100px solid #ff9666;
+  border-left: 250px solid #537b79;
+  border-top-left-radius: 250px;
+  border-top-right-radius: 250px;
+  border-bottom-left-radius: 250px;
+  border-bottom-right-radius: 200px;
+}
+
+.dot-words4 {
+  position: absolute;
+  top: 158.5%;
+  left: 41%;
+  color: white;
+}
+
+.dot5 {
+  position: absolute;
+  top: 155%;
+  left: 72%;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-top: 100px solid #537b79;
+  border-left: 250px solid #ff9666;
+  border-top-left-radius: 250px;
+  border-top-right-radius: 250px;
+  border-bottom-left-radius: 250px;
+  border-bottom-right-radius: 200px;
+}
+
+.dot-words5 {
+  position: absolute;
+  top: 157.5%;
+  left: 73.9%;
+  color: white;
+}
+
+.nurturing-para {
+  text-align: center;
+  padding-top: 210px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #537b79;
+}
+
+.collaboration-para {
+  position: absolute;
+  text-align: justify;
+  padding-top: 840px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #537b79;
+  left: 2.5%;
+  top: 80%;
+}
+
+.collective-para {
+  position: absolute;
+  text-align: justify;
+  padding-top: 840px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #ff9666;
+  left: 35.5%;
+  top: 80%;
+}
+
+.discovering-para {
+  position: absolute;
+  text-align: justify;
+  padding-top: 840px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #537b79;
+  left: 69.5%;
+  top: 80%;
+}
+
+
+
+.funding {
+  padding: 0;
+  margin: 0;
+  height: 300px;
+  /* min-height: 50vh; */
+  /* background-color: #537b79; */
+  background-color: #181716;
+}
+
+.funding-image {
+  position: absolute;
+  top: 215%;
+  left: 30%;
+  width: 900px;
+  height: 370 px;
+  object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.side-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-weight: bold;
+  color: aliceblue;
+}

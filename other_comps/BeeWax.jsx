@@ -11,9 +11,11 @@ function BeeWax() {
         let fn = d => d.value;
         let graph = new AccurateBeeswarm(data, radius, fn)
         .calculateYPositions();
-        return (<div>
-                {graph}
-        </div>
+        return (<svg>
+               <ForceGraph
+            nodes={nodes}
+          />
+        </svg>
         );
 }
 export default BeeWax;
