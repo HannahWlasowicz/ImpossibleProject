@@ -42,6 +42,7 @@ const Root: FC = () => {
   return (
   <div id="app-root" className={showContents ? "show-contents" : ""}>
       <SigmaContainer
+      style={{width:"500px", height:"500px"}}
         graphOptions={{ type: "undirected" }}
         initialSettings={{
           nodeProgramClasses: { image: getNodeProgramImage() },
