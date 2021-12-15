@@ -1,5 +1,9 @@
 import { useRegisterEvents, useSigma, useSetSettings } from "react-sigma-v2";
 import React, { FC, useEffect } from "react";
+// import "../components/Dropdowns";
+// import Dropdowns from "../components/Dropdowns";
+// import "../components/Dropdowns";
+import testFunc from "../components/Temp";
 
 function getMouseLayer() {
 	return document.querySelector(".sigma-mouse");
@@ -20,6 +24,9 @@ const GraphEventsController: FC<{ setHoveredNode: (node: string | null) => void 
 			clickNode({ node }) {
 				if (!graph.getNodeAttribute(node, "hidden")) {
 					console.log(node);
+					// this.updates(node.key);
+					testFunc();
+					// update(node.key);
 					//   window.open(graph.getNodeAttribute(node, "URL"), "_blank");
 				}
 			},

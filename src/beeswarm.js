@@ -65,6 +65,7 @@ let tooltip = d3.select("#svganchor").append("div")
 d3.csv("https://martinheinz.github.io/charts/data/who_suicide_stats.csv").then(function (data) {
 
     let dataSet = data;
+    console.log("data loaded");
 
     // Set chart domain max value to the highest total value in data set
     xScale.domain(d3.extent(data, function (d) {

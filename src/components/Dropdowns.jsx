@@ -13,27 +13,14 @@ const Dropdowns = () => {
 
   useEffect(() => [questions]);
 
-  function updates(key) {
-    let answerArray = [];
-    for (const element of response[key]) {
-      element.raw_text.includes(key)
-        ? answerExtraction(element, answerArray)
-        : console.log();
-    }
+  function getResponse(){
+    return response;
+  }
+
+  function updateAnser(answerArray){
     setAnswers(answerArray);
   }
 
-  function answerExtraction(object, answerArray) {
-    if (object.question === "history") {
-      answerArray.push(<td className="history"> {object.raw_text} </td>);
-    } else if (object.question === "people") {
-      answerArray.push(<td className="people"> {object.raw_text} </td>);
-    } else if (object.question === "structure") {
-      answerArray.push(<td className="structure"> {object.raw_text} </td>);
-    } else {
-      answerArray.push(<td className="tech"> {object.raw_text} </td>);
-    }
-  }
 
   const historicalWords = keys[0]["historical_table"].map((obj) => (
     <Dropdown.Item onClick={() => updates(obj.key)}>{obj.key}</Dropdown.Item>
@@ -101,5 +88,30 @@ const Dropdowns = () => {
     </div>
   );
 };
+
+export function updates(key) {
+  console.log("cool");
+  let answerArray = [];
+  
+  let resVal =this.getResponse();
+  for (const element of resVal[key]) {
+    element.raw_text.includes(key)
+      ? answerExtraction(element, answerArray)
+      : console.log();
+  }
+  this.updateAnser(answerArray);
+}
+
+function answerExtraction(object, answerArray) {
+  if (object.question === "history") {
+    answerArray.push(<td className="history"> {object.raw_text} </td>);
+  } else if (object.question === "people") {
+    answerArray.push(<td className="people"> {object.raw_text} </td>);
+  } else if (object.question === "structure") {
+    answerArray.push(<td className="structure"> {object.raw_text} </td>);
+  } else {
+    answerArray.push(<td className="tech"> {object.raw_text} </td>);
+  }
+}
 
 export default Dropdowns;
