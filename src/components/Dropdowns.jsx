@@ -14,6 +14,7 @@ const Dropdowns = () => {
   useEffect(() => [questions]);
 
   function getResponse(){
+    console.log("responding");
     return response;
   }
 
@@ -90,16 +91,18 @@ const Dropdowns = () => {
 };
 
 export function updates(key) {
+  
   console.log("cool");
   let answerArray = [];
   
-  let resVal =this.getResponse();
+  let resVal = Dropdowns.response;
+  console.log(resVal);
   for (const element of resVal[key]) {
     element.raw_text.includes(key)
       ? answerExtraction(element, answerArray)
       : console.log();
   }
-  this.updateAnser(answerArray);
+  Dropdowns.setAnswers(answerArray)
 }
 
 function answerExtraction(object, answerArray) {
